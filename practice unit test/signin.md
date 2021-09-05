@@ -1,129 +1,137 @@
+# Glossary of terms
 
-Components
+## Components
 
 The key components of Jasmine Syntax - Suites, Specs, Expectations and Matchers
 
-Suites
+* ### Suites
 
-To test the code or checking project steps using jasmine.
+  To test the code or checking project steps using jasmine.
 
-Create a jasmine with the syntax
+  Create a jasmine with the syntax
 
-"describe"
+  "describe"
 
-It begins with a call to the global Jasmine function which describe the two parameters:
+  It begins with a call to the global Jasmine function which describe the two parameters:
 
-"string" and "function"
+  "string" and "function"
 
-The string is a name or title for a spec suite it is a wording that what is being tested.
+  The string is a name or title for a spec suite what is being tested.
 
-The function is a block of code that implements the suite or testing the code.
+  The function is a block of code that implements the suite or testing the code.
 
-Specs
+* ### Specs
 
-It is defined by calling the global Jasmine function "it".
+  It is defined by calling the global Jasmine function "it".
 
-The Syntax will be like this
+  The Syntax will be like this
 
-//////////////////////////////////////////////////////
-
+```ruby
 describe("About the main process", function(){
 
-   it("about the function", function(){
+ it("about the function", function(){
    
-       a = true;
+     a = true;
        
-       expect(a).toBe(true);
+     expect(a).toBe(true);
        
-   });
+  });
    
 });
+```
+* ### Expectations
 
-//////////////////////////////////////////////////////
+  Expectations is described as "expect" inside the function which takes a value, called  as "toBe". An expectation is an assertion that is either true or false. 
 
-Expectations
+* ### Matchers
 
-Expectations is described as "expect" inside the function which takes a value, called the actual value as "toBe". An expectation in Jasmine is an assertion that is either true or false. 
+  It is a comparison between the actual value and the expected value either if the expectation is "true" or "false".
 
-Matchers
+* ### Use Cases
 
-It is a comparison between the actual value and the expected value either if the expectation is "true" or "false".
+  * A Signin component case is below:
+
+  * User gets logged in filling credentials.
+
+* ### User Behaviour
+
+  * Enter email and password Details
+   
+  * Click on login Button
 
 
+```ruby
 import { TestBed, ComponentFixture, inject, async } from '@angular/core/testing';
 
-import { LoginComponent, User } from './login.component';
+import { Loginmethod, User } from './signin.component';
 
+describe('Component: signin', () => {
 
-``````ruby
-describe('Component: Login', () => {
+    let component: signinComponent;
 
-    let component: LoginComponent;
-    
-    let fixture: ComponentFixture<LoginComponent>;
+    let fixture: ComponentFixture<signinComponent>;
 
      beforeEach(() => {
+```
 
-        // refine the test module by declaring the test component
-        
+> refine the test module by declaring the test component
+```ruby       
         TestBed.configureTestingModule({
         
-            declarations: [LoginComponent]
+            declarations: [signinComponent]
             
         });
 
+```
+> create component and test fixture
 
-        // create component and test fixture
-        
-        fixture = TestBed.createComponent(LoginComponent);
-        
-        // get test component from the fixture
-        
+```ruby    
+        fixture = TestBed.createComponent(signinComponent);
+ ```       
+> get test component from the fixture
+
+
+```ruby        
         component = fixture.componentInstance;
         
-         it('Entering valid email and password gets user loggedIn ', () => {
+```     
+
+```ruby
+       it('Entering valid email and valid password gets user loggedIn ', () => {
          
-        let user: User;
+            let user: User;
         
-        login.value = "xyz@campusrack.net";
+            signin.email.value = "xyz@campustrack.net";
         
-        password.value = "123456";
+            sigin.password.value = "123456";
+           
+            user.clickSignIn();
         
-        expect(user.valid.email).toBe(true,'xyz@campusrack.net');
+            expect(user.valid.email).toBe(true,'xyz@campustrack.net');
      
-        expect(user.valid.password).toBe(true, '123456');
+            expect(user.valid.password).toBe(true, '123456');
         
         };
         
-      it('Entering Invalid email or password , () => {
+       it('Entering Invalid email or password or both user gets error message, () => {
          
-        let user: User;
-        
-        login.value = "xyz@campusrack.org";
-        
-        password.value = "12456";
-        
-        expect(user.invalid.email).toBe(false, 'xyz@campusrack.net');
+            let user: User;
      
-        expect(user.invaild.password).toBe(false, '123456');  
+            signin.email.value = " ";
         
-        };
+            signin.password.value = " ";
         
-         it('Entering Invalid email or password user gets error message, () => {
+            user.clickSignIn();
          
-        let user: User;
+            expect(login.getErrorMessage()).toEqual(
         
-        login.message = "Invalid email or password;
+           'Invalid email or password.'
+      );
         
-        password.message = "Invalid email or password;
-        
-        expect(user.invalid.email).toBe("Invalid email or password;);
+     });
      
-        expect(user.invaild.password).toBe("Invalid email or password;);  
+     });
         
-        };
-``````        
-        
-      
+      ```
 
 
